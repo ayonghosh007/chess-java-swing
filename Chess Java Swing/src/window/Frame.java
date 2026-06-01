@@ -27,7 +27,7 @@ public class Frame extends JFrame implements Constants {
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		getContentPane().setBackground(new Color(0x070f1c));
+		getContentPane().setBackground(new Color(settings.back));
 	}
 
 }

@@ -13,6 +13,7 @@ public interface Constants {
 	public static final Dimension BOARD_SIZE = new Dimension(board_width, board_width);
 	public static final Dimension BOX = new Dimension(board_width / 8, board_width / 8);
 
+	public static final Settings settings = new Settings();
 	public static final Frame frame = new Frame();
 	public static final Board board = new Board();
 }

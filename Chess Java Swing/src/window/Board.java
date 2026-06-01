@@ -25,7 +25,7 @@ public class Board extends JLabel implements Constants {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(Help.getImage("wood.png"), 0, 0, getWidth(), getHeight(), null);
+		g.drawImage(Help.getImage(settings.image), 0, 0, getWidth(), getHeight(), null);
 	}
 
 }
