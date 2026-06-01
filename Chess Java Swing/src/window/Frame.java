@@ -21,6 +21,7 @@ public class Frame extends JFrame implements Constants {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		setUndecorated(true);
+		setLayout(null);
 	}
 
 	public void paint(Graphics g) {
