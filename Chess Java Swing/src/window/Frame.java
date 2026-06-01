@@ -16,7 +16,6 @@ public class Frame extends JFrame implements Constants {
 
 	public Frame() {
 		setVisible(false);
-		setLocation(0, 0);
 		setExtendedState(MAXIMIZED_BOTH);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
