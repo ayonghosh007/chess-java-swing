@@ -5,8 +5,8 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
-import main.Constants;
-import main.Help;
+import lib.Constants;
+import lib.Help;
 
 public class Board extends JLabel implements Constants {
 

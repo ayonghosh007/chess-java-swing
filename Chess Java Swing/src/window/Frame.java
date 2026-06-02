@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
-import main.Constants;
+import lib.Constants;
 
 public class Frame extends JFrame implements Constants {
 
