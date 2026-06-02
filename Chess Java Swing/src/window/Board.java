@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import javax.swing.JLabel;
 
 import lib.Constants;
-import lib.Help;
 
 public class Board extends JLabel implements Constants {
 
@@ -25,7 +24,16 @@ public class Board extends JLabel implements Constants {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(Help.getImage(settings.image), 0, 0, getWidth(), getHeight(), null);
+		g.drawImage(settings.getImage(), 0, 0, getWidth(), getHeight(), null);
+	}
+
+	public void initializeGrid() {
+		for(int i = 0; i < 8; i ++) {
+			for(int j = 0; j < 8; j ++) {
+				grid[i][j] = new Box(i, j);
+				add(grid[i][j]);
+			}
+		}
 	}
 
 }

@@ -1,6 +1,5 @@
 package window;
 
-import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -26,7 +25,7 @@ public class Frame extends JFrame implements Constants {
 	public void paint(Graphics g) {
 		super.paint(g);
 
-		getContentPane().setBackground(new Color(settings.back));
+		getContentPane().setBackground(settings.backColor());
 	}
 
 }
