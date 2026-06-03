@@ -4,12 +4,18 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-public class Help {
-	public static Image getImage(String fileName) {
+import com.formdev.flatlaf.extras.FlatSVGIcon;
 
+public class Help implements Constants {
+
+	public Image getImage(String fileName) {
 		Image imag = (new ImageIcon(Help.class.getResource("../assets/" + fileName))).getImage();
 		return imag;
 	}
 
+	public FlatSVGIcon getSVG(String fileName) {
+		FlatSVGIcon svg = new FlatSVGIcon("../assets/" + settings.coinStyle() + fileName, PIECE_SIZE.width, PIECE_SIZE.height);
 
+		return svg;
+	}
 }

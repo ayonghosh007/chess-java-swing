@@ -54,6 +54,9 @@ public class Box extends JLabel implements Constants {
         g2d.dispose();
 	}
 
+	/*
+	 * Come here when writing for 2 player mode
+	 */
 	public void reverse() {
 		rev = !rev;
 	}
@@ -75,7 +78,7 @@ public class Box extends JLabel implements Constants {
 			setSize(BOX_SIZE.width / 5, BOX_SIZE.height / 5);
 			setHorizontalAlignment(CENTER);
 			setVerticalAlignment(CENTER);
-			setFont(new Font("Sans Serif", Font.PLAIN, 22));
+			setFont(new Font("Arial", Font.PLAIN, 22));
 			setForeground(new Color((x + y) % 2 == 1?
 						settings.lightColor().getRGB() & 0x00ffffff :
 						settings.darkColor().getRGB() & 0x00ffffff));

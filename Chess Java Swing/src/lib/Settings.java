@@ -10,7 +10,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Settings {
+public class Settings implements Constants {
 
 	private String theme;
 	private int light;
@@ -104,7 +104,7 @@ public class Settings {
 		if(image == null)
 			return null;
 
-		return Help.getImage(image);
+		return HELP.getImage(image);
 	}
 
 	public String coinStyle() {
