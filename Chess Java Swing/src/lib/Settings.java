@@ -24,7 +24,6 @@ public class Settings {
 	public Settings() {
 		// TODO Auto-generated constructor stub
 		file = new File("src/assets/settings.ini");
-		System.out.println(file.getAbsolutePath());
 		if(!file.exists()) {
 			try {
 				file.createNewFile();

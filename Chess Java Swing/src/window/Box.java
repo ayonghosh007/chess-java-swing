@@ -1,5 +1,7 @@
 package window;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -16,14 +18,28 @@ public class Box extends JLabel implements Constants {
 
 	private int x, y;
 
+	private boolean rev;
+
+	private Cods letters, numbers;
+
 	public Box(int x, int y) {
 		// TODO Auto-generated constructor stub
 		this.x = x;
 		this.y = y;
+		rev = false;
 
 		setSize(BOX_SIZE);
 		setLocation(BOX_SIZE.width * x, BOARD_SIZE.height - BOX_SIZE.width * (y + 1));
 		setOpaque(false);
+
+		letters = new Cods(false);
+		numbers = new Cods(true);
+
+		letters.repaint();
+		numbers.repaint();
+
+		add(letters);
+		add(numbers);
 	}
 
 	@Override
@@ -36,5 +52,63 @@ public class Box extends JLabel implements Constants {
         g2d.fillRect(0, 0, getWidth(), getHeight());
 
         g2d.dispose();
+	}
+
+	public void reverse() {
+		rev = !rev;
+	}
+
+	class Cods extends JLabel {
+
+		/**
+		 *
+		 */
+		private static final long serialVersionUID = -1231059846265787257L;
+
+		private boolean up;
+
+		public Cods(boolean up) {
+			// TODO Auto-generated constructor stub
+			this.up = up;
+
+			setOpaque(false);
+			setSize(BOX_SIZE.width / 5, BOX_SIZE.height / 5);
+			setHorizontalAlignment(CENTER);
+			setVerticalAlignment(CENTER);
+			setFont(new Font("Sans Serif", Font.PLAIN, 22));
+			setForeground(new Color((x + y) % 2 == 1?
+						settings.lightColor().getRGB() & 0x00ffffff :
+						settings.darkColor().getRGB() & 0x00ffffff));
+
+			if(up) {
+				setText(y + 1 + "");
+				setLocation(0, 0);
+			}
+			else {
+				setText((char)(x + 'a') + "");
+				setLocation(BOX_SIZE.width - getWidth(), BOX_SIZE.height - getHeight());
+			}
+		}
+
+		@Override
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+
+			if(up) {
+				if(x == 0) {
+					setVisible(true);
+				}
+				else {
+					setVisible(false);
+				}
+			}
+			else {
+				setVisible(false);
+				if(y == 7)
+					setVisible(rev);
+				if(y == 0)
+					setVisible(!rev);
+			}
+		}
 	}
 }
