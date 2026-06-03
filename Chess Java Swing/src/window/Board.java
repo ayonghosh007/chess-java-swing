@@ -2,6 +2,7 @@ package window;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
 
 import javax.swing.JLabel;
 
@@ -24,7 +25,10 @@ public class Board extends JLabel implements Constants {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(settings.getImage(), 0, 0, getWidth(), getHeight(), null);
+		Image img = settings.getImage();
+
+		if(img != null)
+			g.drawImage(img, 0, 0, getWidth(), getHeight(), null);
 	}
 
 	public void initializeGrid() {
