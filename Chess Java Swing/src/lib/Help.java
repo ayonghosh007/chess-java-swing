@@ -14,7 +14,7 @@ public class Help implements Constants {
 	}
 
 	public FlatSVGIcon getSVG(String fileName) {
-		FlatSVGIcon svg = new FlatSVGIcon("../assets/" + settings.coinStyle() + fileName, PIECE_SIZE.width, PIECE_SIZE.height);
+		FlatSVGIcon svg = new FlatSVGIcon("assets/pieces/" + settings.coinStyle() + "/" + fileName, PIECE_SIZE.width, PIECE_SIZE.height);
 
 		return svg;
 	}

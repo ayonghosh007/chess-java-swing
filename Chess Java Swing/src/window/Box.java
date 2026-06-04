@@ -16,6 +16,8 @@ public class Box extends JLabel implements Constants {
 	 */
 	private static final long serialVersionUID = -9049289875180972315L;
 
+	private Piece piece;
+
 	private int x, y;
 
 	private boolean rev;
@@ -27,6 +29,7 @@ public class Box extends JLabel implements Constants {
 		this.x = x;
 		this.y = y;
 		rev = false;
+		piece = null;
 
 		setSize(BOX_SIZE);
 		setLocation(BOX_SIZE.width * x, BOARD_SIZE.height - BOX_SIZE.width * (y + 1));
@@ -59,6 +62,28 @@ public class Box extends JLabel implements Constants {
 	 */
 	public void reverse() {
 		rev = !rev;
+	}
+
+	public Piece addPiece(Piece piece) {
+		this.piece = piece;
+
+		add(piece);
+		setComponentZOrder(piece, 0);
+
+		return piece;
+	}
+
+	public Piece getPiece() {
+		return piece;
+	}
+
+	public Piece removePiece() {
+		Piece piece = getPiece();
+		remove(piece);
+
+
+		this.piece = null;
+		return piece;
 	}
 
 	class Cods extends JLabel {

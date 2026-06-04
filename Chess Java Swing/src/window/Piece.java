@@ -17,9 +17,10 @@ public class Piece extends JLabel implements Constants {
 
 	private boolean white;
 
-	private Piece(String fileName) {
+	private Piece(String fileName, boolean white) {
 		// TODO Auto-generated constructor stub
 		this.fileName = fileName;
+		this.white = white;
 
 		setSize(PIECE_SIZE);
 		setLocation((BOX_SIZE.width - getWidth()) / 2, (BOX_SIZE.height - getHeight()) / 2);
@@ -33,32 +34,32 @@ public class Piece extends JLabel implements Constants {
 
 	public static Piece king(boolean white)
 	{
-		return new Piece((white?"w":"b")+"K.svg");
+		return new Piece((white?"w":"b")+"K.svg", white);
 	}
 
 	public static Piece queen(boolean white)
 	{
-		return new Piece((white?"w":"b")+"Q.svg");
+		return new Piece((white?"w":"b")+"Q.svg", white);
 	}
 
 	public static Piece bishop(boolean white)
 	{
-		return new Piece((white?"w":"b")+"B.svg");
+		return new Piece((white?"w":"b")+"B.svg", white);
 	}
 
 	public static Piece rook(boolean white)
 	{
-		return new Piece((white?"w":"b")+"R.svg");
+		return new Piece((white?"w":"b")+"R.svg", white);
 	}
 
 	public static Piece knight(boolean white)
 	{
-		return new Piece((white?"w":"b")+"N.svg");
+		return new Piece((white?"w":"b")+"N.svg", white);
 	}
 
 	public static Piece pawn(boolean white)
 	{
-		return new Piece((white?"w":"b")+"P.svg");
+		return new Piece((white?"w":"b")+"P.svg", white);
 	}
 
 	public boolean isWhite() {
