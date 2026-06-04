@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 
 import window.Board;
 import window.Box;
+import window.Exit;
 import window.Frame;
 
 public interface Constants {
@@ -17,6 +18,7 @@ public interface Constants {
 
 	public static final Help HELP = new Help();
 
+	public static final Exit exit = new Exit();
 	public static final Settings settings = new Settings();
 	public static final Frame frame = new Frame();
 	public static final Board board = new Board();
