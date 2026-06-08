@@ -1,6 +1,5 @@
 package window;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -38,9 +37,6 @@ public class Box extends JLabel implements Constants {
 		letters = new Cods(false);
 		numbers = new Cods(true);
 
-		letters.repaint();
-		numbers.repaint();
-
 		add(letters);
 		add(numbers);
 	}
@@ -57,11 +53,19 @@ public class Box extends JLabel implements Constants {
         g2d.dispose();
 	}
 
-	/*
-	 * Come here when writing for 2 player mode
-	 */
 	public void reverse() {
 		rev = !rev;
+
+		if(rev) {
+			setLocation(BOX_SIZE.width * x, BOARD_SIZE.height - BOX_SIZE.width * (7 - y + 1));
+		}
+		else {
+			setLocation(BOX_SIZE.width * x, BOARD_SIZE.height - BOX_SIZE.width * (y + 1));
+		}
+
+		repaint();
+		letters.repaint();
+		numbers.repaint();
 	}
 
 	public Piece addPiece(Piece piece) {
@@ -103,10 +107,10 @@ public class Box extends JLabel implements Constants {
 			setSize(BOX_SIZE.width / 5, BOX_SIZE.height / 5);
 			setHorizontalAlignment(CENTER);
 			setVerticalAlignment(CENTER);
-			setFont(new Font("Arial", Font.PLAIN, 22));
-			setForeground(new Color((x + y) % 2 == 1?
-						settings.lightColor().getRGB() & 0x00ffffff :
-						settings.darkColor().getRGB() & 0x00ffffff));
+			setFont(new Font("Arial", Font.PLAIN, getWidth() * 2 / 3 + 6));
+			setForeground(HELP.getRGBOf((x + y) % 2 == 1?
+						settings.lightColor() :
+						settings.darkColor()));
 
 			if(up) {
 				setText(y + 1 + "");

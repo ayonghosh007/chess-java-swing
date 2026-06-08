@@ -17,8 +17,10 @@ public class Exit extends JDialog implements Constants {
 
 	private JButton yes, no;
 
+	private boolean active;
+
 	public Exit() {
-		setVisible(false);
+		setActive(false);
 		setSize(SCREEN_SIZE.width*2/5, SCREEN_SIZE.height/3);
 		setLocation((SCREEN_SIZE.width - getWidth())/2, (SCREEN_SIZE.height - getHeight())/2);
 		setUndecorated(true);
@@ -45,10 +47,21 @@ public class Exit extends JDialog implements Constants {
 		no.setFont(new Font("Calibri", Font.BOLD, 40));
 		no.setVerticalAlignment(JButton.CENTER);
 		no.addActionListener(e -> {
-			setVisible(false);
+			setActive(false);
 			frame.setEnabled(true);
+			frame.requestFocus();
+			frame.toFront();
 		});
 
 		add(no);
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+		setVisible(active);
 	}
 }

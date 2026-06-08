@@ -67,4 +67,11 @@ public class Board extends JLabel implements Constants {
 		grid[7][7].addPiece(Piece.rook(false));
 	}
 
+	public void reverse() {
+		for(int i = 0; i < 8; i++) {
+			for(int j = 0; j < 8; j++)
+				grid[i][j].reverse();
+		}
+	}
+
 }

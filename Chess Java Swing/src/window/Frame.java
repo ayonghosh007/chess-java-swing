@@ -22,16 +22,32 @@ public class Frame extends JFrame implements Constants {
 	public Frame() {
 		setVisible(false);
 		setExtendedState(MAXIMIZED_BOTH);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setResizable(false);
 		setUndecorated(true);
+		setTitle("Chess\u24c7");
 		setLayout(null);
 
 		add(new Cross());
-		addWindowStateListener(new WindowAdapter() {
+		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				frame.toFront();
+				frame.requestFocus();
+				exit.setActive(true);
+				frame.setEnabled(false);
+			}
+		});
+		addWindowFocusListener(new WindowAdapter() {
 
+			@Override
+			public void windowGainedFocus(WindowEvent e) {
+				// TODO Auto-generated method stub
+				if(exit.isActive()) {
+					exit.setActive(false);
+					exit.setActive(true);
+					frame.setEnabled(false);
+				}
 			}
 		});
 	}
@@ -72,7 +88,7 @@ public class Frame extends JFrame implements Constants {
 
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					exit.setVisible(true);
+					exit.setActive(true);
 					frame.setEnabled(false);
 				}
 			});
@@ -81,7 +97,7 @@ public class Frame extends JFrame implements Constants {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 
-			g.drawImage(img, 5, 5, getWidth() - 10, getHeight() - 10, null);
+			g.drawImage(img, 10, 10, getWidth() - 20, getHeight() - 20, null);
 		}
 	}
 

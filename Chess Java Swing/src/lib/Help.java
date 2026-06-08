@@ -1,5 +1,6 @@
 package lib;
 
+import java.awt.Color;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -17,5 +18,9 @@ public class Help implements Constants {
 		FlatSVGIcon svg = new FlatSVGIcon("assets/pieces/" + settings.coinStyle() + "/" + fileName, PIECE_SIZE.width, PIECE_SIZE.height);
 
 		return svg;
+	}
+
+	public Color getRGBOf(Color col) {
+		return new Color(col.getRGB() & 0x00ffffff);
 	}
 }
