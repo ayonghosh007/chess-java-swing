@@ -3,6 +3,8 @@ package window;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 
@@ -33,12 +35,24 @@ public class Box extends JLabel implements Constants {
 		setSize(BOX_SIZE);
 		setLocation(BOX_SIZE.width * x, BOARD_SIZE.height - BOX_SIZE.width * (y + 1));
 		setOpaque(false);
+		setLayout(null);
 
 		letters = new Cods(false);
 		numbers = new Cods(true);
 
 		add(letters);
 		add(numbers);
+
+		letters.reorder();
+		numbers.reorder();
+
+		addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				super.mousePressed(e);
+			}
+		});
 	}
 
 	@Override
@@ -64,15 +78,22 @@ public class Box extends JLabel implements Constants {
 		}
 
 		repaint();
-		letters.repaint();
-		numbers.repaint();
+		letters.reorder();
+		numbers.reorder();
 	}
 
 	public Piece addPiece(Piece piece) {
+		if(this.piece != null)
+			removePiece();
+
 		this.piece = piece;
 
 		add(piece);
 		setComponentZOrder(piece, 0);
+
+		piece.setx(x);
+		piece.sety(y);
+		piece.setLocation((BOX_SIZE.width - PIECE_SIZE.width) / 2, (BOX_SIZE.height - PIECE_SIZE.height) / 2);
 
 		return piece;
 	}
@@ -84,7 +105,6 @@ public class Box extends JLabel implements Constants {
 	public Piece removePiece() {
 		Piece piece = getPiece();
 		remove(piece);
-
 
 		this.piece = null;
 		return piece;
@@ -122,10 +142,7 @@ public class Box extends JLabel implements Constants {
 			}
 		}
 
-		@Override
-		public void paintComponent(Graphics g) {
-			super.paintComponent(g);
-
+		public void reorder() {
 			if(up) {
 				if(x == 0) {
 					setVisible(true);
@@ -141,6 +158,8 @@ public class Box extends JLabel implements Constants {
 				if(y == 0)
 					setVisible(!rev);
 			}
+
+			repaint();
 		}
 	}
 }

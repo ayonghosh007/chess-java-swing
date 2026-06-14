@@ -1,14 +1,19 @@
 package lib;
 
+import javax.swing.SwingUtilities;
+
 public class Main implements Constants {
 
 	public static void run() {
-		board.initializeGrid();
+		SwingUtilities.invokeLater(() -> {
+			board.initializeGrid();
 
-		frame.add(board);
+			label.add(board);
+			frame.add(label);
 
-		board.setVisible(true);
-		frame.setVisible(true);
+			board.setVisible(true);
+			label.setVisible(true);
+			frame.setVisible(true);
+		});
 	}
-
 }

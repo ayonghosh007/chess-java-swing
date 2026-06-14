@@ -97,8 +97,7 @@ public class Frame extends JFrame implements Constants {
 		public void paintComponent(Graphics g) {
 			super.paintComponent(g);
 
-			g.drawImage(img, 10, 10, getWidth() - 20, getHeight() - 20, null);
+			g.drawImage(img, getWidth() / 10, getHeight() / 10, getWidth() * 4 / 5, getHeight() * 4 / 5, this);
 		}
 	}
-
 }

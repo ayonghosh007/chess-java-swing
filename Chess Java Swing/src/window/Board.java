@@ -15,12 +15,17 @@ public class Board extends JLabel implements Constants {
 	 */
 	private static final long serialVersionUID = 9009501604564899782L;
 
+	private boolean rev;
+
 	public Board() {
+		rev = false;
+
 		setSize(BOARD_SIZE);
 		setLocation(SCREEN_SIZE.width/2 - BOARD_SIZE.width/2, SCREEN_SIZE.height/2 - BOARD_SIZE.height/2);
 		setOpaque(true);
 		setVisible(true);
 		setBackground(Color.WHITE);
+		setLayout(null);
 	}
 
 	public void paintComponent(Graphics g) {
@@ -68,10 +73,15 @@ public class Board extends JLabel implements Constants {
 	}
 
 	public void reverse() {
+		rev = !rev;
 		for(int i = 0; i < 8; i++) {
 			for(int j = 0; j < 8; j++)
 				grid[i][j].reverse();
 		}
+	}
+
+	public boolean isReverse() {
+		return rev;
 	}
 
 }
