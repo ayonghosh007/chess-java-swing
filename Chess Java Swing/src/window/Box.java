@@ -1,8 +1,11 @@
 package window;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -25,6 +28,8 @@ public class Box extends JLabel implements Constants {
 
 	private Cods letters, numbers;
 
+	private Movable movable;
+
 	public Box(int x, int y) {
 		// TODO Auto-generated constructor stub
 		this.x = x;
@@ -45,6 +50,10 @@ public class Box extends JLabel implements Constants {
 
 		letters.reorder();
 		numbers.reorder();
+
+		movable = new Movable();
+
+		add(movable);
 
 		addMouseListener(new MouseAdapter() {
 			@Override
@@ -106,8 +115,24 @@ public class Box extends JLabel implements Constants {
 		Piece piece = getPiece();
 		remove(piece);
 
+		piece.setx(-1);
+		piece.sety(-1);
+
 		this.piece = null;
 		return piece;
+	}
+
+	public int getx() {
+		return x;
+	}
+
+	public int gety() {
+		return y;
+	}
+
+	public void setMovable(boolean mov) {
+		movable.setVisible(mov);
+		movable.repaint();
 	}
 
 	class Cods extends JLabel {
@@ -160,6 +185,48 @@ public class Box extends JLabel implements Constants {
 			}
 
 			repaint();
+		}
+	}
+
+	class Movable extends JLabel {
+
+		/**
+		 *
+		 */
+		private static final long serialVersionUID = 7755595915163179905L;
+
+		public Movable() {
+			// TODO Auto-generated constructor stub
+			setVisible(false);
+			setSize(BOX_SIZE);
+			setLocation(0, 0);
+			setOpaque(false);
+			setLayout(null);
+		}
+
+		@Override
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+
+			Graphics2D g2d = (Graphics2D) g.create();
+			g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+			g2d.setColor(new Color(25, 25, 25, 100));
+
+			if(piece == null) {
+				int diameter = getWidth() / 3;
+
+				g2d.fillOval((getWidth() - diameter) / 2, (getHeight() - diameter) / 2, diameter, diameter);
+			}
+			else {
+				int stroke = getWidth() / 10;
+				int diameter = getWidth() - stroke;
+
+				g2d.setStroke(new BasicStroke(stroke));
+				g2d.drawOval((getWidth() - diameter) / 2, (getHeight() - diameter) / 2, diameter, diameter);
+			}
+
+	        g2d.dispose();
 		}
 	}
 }

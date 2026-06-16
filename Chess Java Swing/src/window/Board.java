@@ -42,34 +42,54 @@ public class Board extends JLabel implements Constants {
 				grid[i][j] = new Box(i, j);
 				add(grid[i][j]);
 
-				if(j == 1)
-					grid[i][j].addPiece(Piece.pawn(true));
+				if(j == 1) {
+					pieces[0][i + 8] = Piece.pawn(true);
+					grid[i][j].addPiece(pieces[0][i + 8]);
+				}
 
-				if(j == 6)
-					grid[i][j].addPiece(Piece.pawn(false));
+				if(j == 6) {
+					pieces[1][i + 8] = Piece.pawn(false);
+					grid[i][j].addPiece(pieces[1][i + 8]);
+				}
 			}
 		}
 
-		grid[4][0].addPiece(Piece.king(true));
-		grid[4][7].addPiece(Piece.king(false));
+		pieces[0][0] = Piece.king(true);
+		pieces[1][0] = Piece.king(false);
+		grid[4][0].addPiece(pieces[0][0]);
+		grid[4][7].addPiece(pieces[1][0]);
 
-		grid[3][0].addPiece(Piece.queen(true));
-		grid[3][7].addPiece(Piece.queen(false));
+		pieces[0][1] = Piece.queen(true);
+		pieces[1][1] = Piece.queen(false);
+		grid[3][0].addPiece(pieces[0][1]);
+		grid[3][7].addPiece(pieces[1][1]);
 
-		grid[2][0].addPiece(Piece.bishop(true));
-		grid[2][7].addPiece(Piece.bishop(false));
-		grid[5][0].addPiece(Piece.bishop(true));
-		grid[5][7].addPiece(Piece.bishop(false));
+		pieces[0][2] = Piece.bishop(true);
+		pieces[1][2] = Piece.bishop(false);
+		pieces[0][3] = Piece.bishop(true);
+		pieces[1][3] = Piece.bishop(false);
+		grid[2][0].addPiece(pieces[0][2]);
+		grid[2][7].addPiece(pieces[1][2]);
+		grid[5][0].addPiece(pieces[0][3]);
+		grid[5][7].addPiece(pieces[1][3]);
 
-		grid[1][0].addPiece(Piece.knight(true));
-		grid[1][7].addPiece(Piece.knight(false));
-		grid[6][0].addPiece(Piece.knight(true));
-		grid[6][7].addPiece(Piece.knight(false));
+		pieces[0][4] = Piece.knight(true);
+		pieces[1][4] = Piece.knight(false);
+		pieces[0][5] = Piece.knight(true);
+		pieces[1][5] = Piece.knight(false);
+		grid[1][0].addPiece(pieces[0][4]);
+		grid[1][7].addPiece(pieces[1][4]);
+		grid[6][0].addPiece(pieces[0][5]);
+		grid[6][7].addPiece(pieces[1][5]);
 
-		grid[0][0].addPiece(Piece.rook(true));
-		grid[0][7].addPiece(Piece.rook(false));
-		grid[7][0].addPiece(Piece.rook(true));
-		grid[7][7].addPiece(Piece.rook(false));
+		pieces[0][6] = Piece.rook(true);
+		pieces[1][6] = Piece.rook(false);
+		pieces[0][7] = Piece.rook(true);
+		pieces[1][7] = Piece.rook(false);
+		grid[0][0].addPiece(pieces[0][6]);
+		grid[0][7].addPiece(pieces[1][6]);
+		grid[7][0].addPiece(pieces[0][7]);
+		grid[7][7].addPiece(pieces[1][7]);
 	}
 
 	public void reverse() {
@@ -84,4 +104,7 @@ public class Board extends JLabel implements Constants {
 		return rev;
 	}
 
+	public void calculate() {
+
+	}
 }
